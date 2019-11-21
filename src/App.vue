@@ -1,23 +1,21 @@
 <template>
     <div id="app">
         <div class="main">
-
             <div v-if="currentComponent === 'SpareParts'" class="checkout">Checkout {{ cart }}</div>
             <component
-                    :is="currentComponent"
-                    v-bind:totalitems=totalItems
-                    v-bind:starships=starships
-                    @decrease-items=decreaseItems(1)
-                    @increase-items=increaseItems(1)
-                    @add-to-cart=addToCart(totalItems)
-                    @loadComponent1="loadComponent('SpareParts')"
-            >
+                :is="currentComponent"
+                v-bind:totalitems=totalItems
+                v-bind:starships=starships
+                @decrease-items=decreaseItems(1)
+                @increase-items=increaseItems(1)
+                @add-to-cart=addToCart(totalItems)
+                @loadComponent1="loadComponent('SpareParts')" >
             </component>
         </div>
 
-        <div class="overlay" @click="closeMenu()"></div>
-        <div class="sidebar">
-            <button @click="toggleMenu()">{{ sidebarToggleLabel }}</button>
+        <!--<div class="overlay" @click="closeMenu()"></div>
+        <div class="sidebar" @click="toggleMenu()">
+            <button>{{ sidebarToggleLabel }}</button>
             <ul class="sidebar__menu">
                 <li>
                     <a href="#" @click="loadComponent('Home'), toggleMenu()">Home</a>
@@ -26,9 +24,21 @@
                     <a href="#" @click="loadComponent('SpareParts'), toggleMenu()">Order spareparts</a>
                 </li>
             </ul>
-        </div>
-    </div>
+        </div>-->
+      <div class="overlay" @click="closeMenu()"></div>
+      <div class="sk-sidebar">
+        <a class="menu-icon" @click="toggleMenu()" href="#" >{{ sidebarToggleLabel }}</a>
+        <ul>
+          <li>
+            <a href="#" @click="loadComponent('Home'), toggleMenu()">Home</a>
+          </li>
+          <li>
+            <a href="#" @click="loadComponent('SpareParts'), toggleMenu()">Order spareparts</a>
+          </li>
+        </ul>
+      </div>
 
+    </div>
 
 </template>
 
@@ -36,7 +46,7 @@
     import Home from './components/Home.vue'
     import SpareParts from './components/SpareParts.vue'
     import axios from 'axios'
-    import $ from "jquery";
+    import $ from "jquery"
 
     export default {
         name: 'app',
@@ -46,7 +56,7 @@
         },
         data: function () {
             return {
-                label: 'Open',
+                label: '☰',
                 isOpen: false,
                 currentComponent: "Home",
                 totalItems: 12,
@@ -77,7 +87,7 @@
                 }
               }*/
             sidebarToggleLabel() {
-                return this.isOpen ? 'Close' : 'Open'
+                return this.isOpen ? '☓' : '☰'
             }
         },
         methods: {
@@ -127,6 +137,19 @@
     }
 
 
+    .main {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: ease-in-out 0.4s;
+      text-align: center;
+      color: red;
+    }
+
+
     .checkout {
         position: absolute;
         height: 60px;
@@ -156,6 +179,77 @@
             position: absolute;
         }
     }
+
+    //
+    // New Sidebar
+    //
+
+  .sk-sidebar{
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+    width:300px;
+    position: absolute;
+    background-color:black;
+    border-right:1px solid green;
+    top:0;
+    transform: translateX(-80%);
+    transition: ease-in-out 0.4s;
+
+    .sidebar-open & {
+      transform: translateX(0);
+      transition-delay: .35s;
+    }
+
+    .menu-icon {
+      font-size:30px;
+      color:green;
+      justify-content: stretch;
+      text-decoration: none;
+      display: block;
+      right: 0;
+      position: absolute;
+      margin-right: 20px;
+      transition: ease-in-out .35s;
+
+      &:hover {
+        transition-delay: .35s;
+        text-decoration: none;
+      }
+
+      .sidebar-open & {
+
+      }
+
+
+    }
+
+    ul {
+      margin-top: 160px;
+      padding-left: 0px;
+      list-style-type: none;
+    }
+
+    li{
+      padding: 15px 30px;
+    }
+
+    a {
+      font-size: 15px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: green;
+      font-family: arial;
+      letter-spacing: 0.6;
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: green;
+
+      }
+    }
+  }
+
 
     //
     // Sidebar
@@ -219,57 +313,4 @@
         }
     }
 
-
-    /*
-
-    .sidebar {
-      display: flex;
-      align-self: center;
-      position: fixed;
-      padding: 30px;
-      width: 300px;
-      height: 100vh;
-      border-right: 1px solid green;
-      background: black;
-      color: white;
-      transform: translateX(-80%);
-      transition: ease-in-out 0.4s;
-      pointer-events: auto;
-
-      & button,
-      & button:focus {
-        width: 120px;
-        height: 30px;
-        color: green;
-        background: none;
-        border: none;
-        position: absolute;
-        right: 0;
-        top: 0;
-        margin-right: -20px;
-        margin-top: 60px;
-        font-size: 18px;
-        transform: rotate(-90deg);
-        text-transform: uppercase;
-        transition: ease-in-out 0.4s;
-        letter-spacing: 3px;
-        outline: 0;
-      }
-    }
-
-
-    */
-
-
-    .main {
-        width: 100%;
-        height: 100%;
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        transition: ease-in-out 0.4s;
-        text-align: center;
-        color: red;
-    }
 </style>
