@@ -41,6 +41,7 @@
         margin-top: 100px;
         margin-bottom: 100px;
         color: green;
+        text-shadow: 2px 2px 4px #00000050;
         }
     }
 

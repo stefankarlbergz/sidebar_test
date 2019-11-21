@@ -127,6 +127,7 @@
     body {
         margin: 0 !important;
         padding: 0 !important;
+        background: black;
         background-image: url("https://c.wallhere.com/photos/15/78/1920x900_px_1star_action_adventure_Awakens_Disney_fi_Force-1622101.jpg!d");
         background-size: 180%;
         background-repeat: no-repeat;
@@ -193,11 +194,11 @@
     background-color:black;
     border-right:1px solid green;
     top:0;
-    transform: translateX(-80%);
+    transform: translateX(-230px);
     transition: ease-in-out 0.4s;
 
     .sidebar-open & {
-      transform: translateX(0);
+      transform: translateX(0px);
       transition-delay: .35s;
     }
 
