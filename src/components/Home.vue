@@ -2,9 +2,9 @@
     <div class="starship">
         <h1>Welcome to Starship Junkyard</h1>
         <div class="starship-wrapper">
-            <div class="starship-wrapper__card" v-for="item in starships" :key="item.model">
+            <div v-on:click="loadComponent" class="starship-wrapper__card" v-for="item in starships" :key="item.model">
                 <div class="starship-wrapper__card__overlay">
-                    <h3><a href="#" v-on:click="loadComponent">{{ item.name }}</a></h3>
+                    <h3><a href="#" >{{ item.name }}</a></h3>
                     <h4>{{ item.model}}</h4>
                 </div>
             </div>
@@ -58,6 +58,7 @@
          border: 1px solid green;
          background: black;
 
+
     &__overlay {
          height: 100%;
          width: 100%;
@@ -68,6 +69,7 @@
 
     &:hover {
          background: green;
+        cursor: pointer;
      }
 
     h3 a {
