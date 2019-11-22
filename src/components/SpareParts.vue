@@ -8,7 +8,7 @@
                 <button class="remove" v-on:click="decreaseItems">-</button>
             </div>
             <div class="spare-parts__add-to-cart">
-                <button v-on:click="addToCart">Add to cart</button>
+                <button class="cart" v-on:click="addToCart">Add to cart</button>
             </div>
         </div>
     </div>
@@ -35,6 +35,9 @@
 
 <style scoped lang="scss">
 
+    $mobile-side-margin: 10px;
+    $desktop-side-margin: 20px;
+
     .spare-parts {
         width: 100%;
         height: 100vh;
@@ -56,11 +59,7 @@
         &__quantity {
             margin-top: 20px;
             padding: 10px;
-
-            &.locked {
-            pointer-events: none;
         }
-    }
 
     h2 {
         margin-bottom: 20px;
@@ -69,10 +68,7 @@
         line-height: 20px;
         text-transform: uppercase;
         font-family: arial;
-    }
-
-    $mobile-side-margin: 10px;
-    $desktop-side-margin: 20px;
+        }
 
     button {
         padding: 5px $mobile-side-margin;
@@ -83,27 +79,25 @@
         font-size: 17px;
         list-style: 17px;
 
-    @media (min-width: 480px) {
-        padding-left: $desktop-side-margin;
-        padding-right: $desktop-side-margin;
+
+
+        @media (min-width: 480px) {
+            padding-left: $desktop-side-margin;
+            padding-right: $desktop-side-margin;
+            }
         }
-    }
+
+        .cart {
+            color: black;
+            background: white;
+        }
+
+
 
     &__add-to-cart {
          margin-top: 20px;
 
-    button {
-        color: white;
-        background: none;
-        font-size: 20px;
-        padding: 7px;
-        border: 1px solid white;
-    }
 
-    button:hover {
-        color: black;
-        background: white;
-    }
     }
     }
 </style>

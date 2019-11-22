@@ -59,7 +59,6 @@
          border: 1px solid green;
          background: black;
 
-
     &__overlay {
          height: 100%;
          width: 100%;
